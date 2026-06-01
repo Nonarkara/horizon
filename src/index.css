@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Manrope', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-void: #050508;
+  --color-surface: #0e0e14;
+  --color-surface-raised: #15151f;
+  --color-surface-glass: rgba(14, 14, 20, 0.72);
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-glow: rgba(0, 240, 255, 0.18);
+
+  --color-neural: #00f0ff;
+  --color-neural-dim: rgba(0, 240, 255, 0.12);
+  --color-alert: #ff00a0;
+  --color-alert-dim: rgba(255, 0, 160, 0.12);
+  --color-warn: #ffb800;
+  --color-warn-dim: rgba(255, 184, 0, 0.12);
+  --color-success: #00ff88;
+  --color-success-dim: rgba(0, 255, 136, 0.12);
+  --color-danger: #ff2d55;
+  --color-danger-dim: rgba(255, 45, 85, 0.12);
+
+  --color-text-primary: #f0f0f5;
+  --color-text-secondary: rgba(240, 240, 245, 0.6);
+  --color-text-tertiary: rgba(240, 240, 245, 0.35);
+  --color-text-muted: rgba(240, 240, 245, 0.2);
+}
+
+@layer base {
+  html {
+    background: #050508;
+    color: #f0f0f5;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-height: 100dvh;
+    background: #050508;
+  }
+
+  ::selection {
+    background: rgba(0, 240, 255, 0.25);
+    color: #fff;
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: 'Manrope', system-ui, sans-serif;
+  }
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.4), 0 0 40px rgba(0, 240, 255, 0.15);
+  }
+  .text-glow-alert {
+    text-shadow: 0 0 20px rgba(255, 0, 160, 0.4), 0 0 40px rgba(255, 0, 160, 0.15);
+  }
+  .text-glow-warn {
+    text-shadow: 0 0 20px rgba(255, 184, 0, 0.4), 0 0 40px rgba(255, 184, 0, 0.15);
+  }
+
+  .border-glow {
+    box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.18), 0 0 20px rgba(0, 240, 255, 0.06);
+  }
+  .border-glow-alert {
+    box-shadow: 0 0 0 1px rgba(255, 0, 160, 0.18), 0 0 20px rgba(255, 0, 160, 0.06);
+  }
+  .border-glow-warn {
+    box-shadow: 0 0 0 1px rgba(255, 184, 0, 0.18), 0 0 20px rgba(255, 184, 0, 0.06);
+  }
+
+  .glass {
+    background: rgba(14, 14, 20, 0.72);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  }
+
+  .glass-strong {
+    background: rgba(14, 14, 20, 0.88);
+    backdrop-filter: blur(32px) saturate(1.4);
+    -webkit-backdrop-filter: blur(32px) saturate(1.4);
+  }
+
+  .scanlines {
+    position: relative;
+  }
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .grid-bg-fine {
+    background-image:
+      linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+    background-size: 200% 100%;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .animate-flicker {
+    animation: flicker 3s ease-in-out infinite;
+  }
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+    70% { opacity: 0.95; }
+    85% { opacity: 0.7; }
+  }
+}
